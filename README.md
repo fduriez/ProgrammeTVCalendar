@@ -21,4 +21,5 @@ Then, to launch the app type the command below
 
 ---
 # Result 
-![Alt text](Cli_Meteo_Launch.png?raw=true "Optional Title")
+![Result On CommandLine](Result/commandLine.png?raw=true "Optional Title")
+![Result On Calendar](Result/Calendar.png?raw=true "Optional Title")
