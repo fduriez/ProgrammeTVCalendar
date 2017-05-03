@@ -16,7 +16,7 @@ var day;
 
 getActualDay(date);
 
-for(var diffDate = 0; diffDate < 7; diffDate++) {
+for(var diffDate = 0; diffDate < 6; diffDate++) {
 	var myDate = new Date();
 	myDate.setDate(date.getDate() + diffDate);
 	getActualDay(myDate);
@@ -24,7 +24,6 @@ for(var diffDate = 0; diffDate < 7; diffDate++) {
 	var myUrl = new String();
 	myUrl = url;
 	progFile.filmSoir(myUrl,myDate);
-
 }
 
 function getActualDay(date) {
@@ -37,7 +36,7 @@ function getActualDay(date) {
 		month = "0" + month;
 	}
 
-	//date.setDate(3);
+	//date.setDate(9);
 
 	day = date.getDate();
 	if(day < 10) {

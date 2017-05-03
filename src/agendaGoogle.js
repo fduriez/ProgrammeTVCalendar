@@ -136,7 +136,7 @@ function createEvent(auth,movie) {
     var channel = new String(movie['CHANNEL']);
     var event = {
         'summary': title,
-        'description': 'Little description of the film',
+        'description': channel,
         'start': {
             'dateTime': beginDate,
             //'dateTime': '2017-03-27T20:50:00+02:00',
