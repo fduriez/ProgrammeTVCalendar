@@ -16,7 +16,7 @@ var day;
 
 getActualDay(date);
 
-for(var diffDate = 0; diffDate < 6; diffDate++) {
+for(var diffDate = 0; diffDate < 8; diffDate++) {
 	var myDate = new Date();
 	myDate.setDate(date.getDate() + diffDate);
 	getActualDay(myDate);

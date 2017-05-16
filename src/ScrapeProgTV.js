@@ -49,8 +49,10 @@ exports.filmSoir = function (url,date) {
                             console.log(partTitle);
                             getMovies($,'div.block:nth-child(3)',date);
                         }
+
                     })
                 }
+                //Verifie si Grandes Chaines TNT contient des programmes
                 else if (partTitle.indexOf("TNT - Chaînes Gratuites") != -1) {
                     while(partTitle[0] == '\n' || partTitle[0] == ' ') {    
                         partTitle = partTitle.slice(1);
@@ -152,6 +154,9 @@ function getProductionYear(movie) {
                 productionYear = productionYear.slice(productionYear.indexOf("(")+1);
                 productionYear = productionYear.slice(0,4);
                 movie['PRODUCTION_YEAR'] = productionYear;
+                if(movie['TITLE'].indexOf("(") != -1) {
+                    movie['TITLE'] = movie['TITLE'].slice(0,movie['TITLE'].indexOf("(")-1);
+                }
                 Allocine.scrapeAllocine(movie);
             })
             
@@ -182,5 +187,4 @@ function initHref(htmlPage) {
         link['url'] = url;
         href[href.length] = link;
     })
-    //console.log(href);
 }
