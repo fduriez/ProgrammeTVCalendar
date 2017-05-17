@@ -16,8 +16,8 @@ exports.createEvent = function (movie) {
         }
         // Authorize a client with the loaded credentials, then call the
         // Google Calendar API.
-        //authorize(JSON.parse(content), listEvents);
-        authorize(JSON.parse(content), movie, createEvent);
+        //authorize(JSON.parse(content), movie, listEvents);
+        authorize(JSON.parse(content), movie, getEvent);
     });
 }
 
@@ -28,6 +28,7 @@ exports.createEvent = function (movie) {
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
+//function authorize(credentials, movie, callback) {
 function authorize(credentials, movie, callback) {
     var clientSecret = credentials.installed.client_secret;
     var clientId = credentials.installed.client_id;
@@ -42,6 +43,7 @@ function authorize(credentials, movie, callback) {
         } else {
             oauth2Client.credentials = JSON.parse(token);
             callback(oauth2Client,movie);
+            //callback(oauth2Client);
         }
     });
 }
@@ -128,7 +130,38 @@ function listEvents(auth) {
     });
 }
 
-function createEvent(auth,movie) {
+function getEvent(auth, movie) {
+    var calendar = google.calendar('v3');
+    calendar.events.list({
+        auth: auth,
+        calendarId: 'primary',
+        timeMin: movie['DATE']['BEGIN'].toISOString(),
+        timeMax: movie['DATE']['END'].toISOString(),
+        maxResults: 1,
+        singleEvents: true,
+        q: movie['TITLE'],
+        orderBy: 'startTime'
+    }, function(err, response) {
+        if (err) {
+            console.log('The API returned an error: ' + err);
+            return;
+        }
+        var events = response.items;
+        if (events.length == 0) {
+            console.log('Event not yet created');
+            createEvent(auth,movie);
+        } else {
+            console.log('Event already exist');
+            for (var i = 0; i < events.length; i++) {
+                var event = events[i];
+                var start = event.start.dateTime || event.start.date;
+                console.log('%s - %s', start, event.summary);
+            }
+        }
+    });
+}
+
+function createEvent(auth,movie,alreadyExist) {
     console.log(movie);
     var title = new String(movie['TITLE']);
     var beginDate = new String(movie['DATE']['BEGIN'].toISOString());
