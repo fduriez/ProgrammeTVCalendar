@@ -1,13 +1,14 @@
 # Programme TV Calendar
 
-Got a question? Join us on stackoverflow at MonNomBidon
+Got a question? Join us on stackoverflow at fduriez
 
 ---
 # Introduction 
 
-What's the TV program tonight? Is there a good movie to watch? That's the question we try to answer with our app.
+What's the TV program tonight? Is there a good movie to watch? That's the question we try to answer with this app.
 
-The way used here is simple, you launch the app and it will create an event in your calendar for each good movie found for the next 7 days.
+The way used here is simple, you launch the app and it will create an event in your Google Calendar for each good movie found for the next 7 days.
+(Here "good movie" means movie being rated at least 4 stars by the spectators on http://www.allocine.fr/)
 
 ---
 # Prerequisites 
