@@ -9,7 +9,7 @@ var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
 
 exports.createEvent = function (movie) {
     // Load client secrets from a local file.
-    fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+    fs.readFile('../client_secret.json', function processClientSecrets(err, content) {
         if (err) {
             console.log('Error loading client secret file: ' + err);
             return;
